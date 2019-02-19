@@ -1,0 +1,314 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Programmierworkshop Innovation Days 2019</title>
+
+    <link rel="stylesheet" href="instructions/css/reveal.css">
+    <!---<link rel="stylesheet" href="css/theme/black.css">-->
+    <!--<link rel="stylesheet" href="css/theme/league.css" id="theme">-->
+    <link rel="stylesheet" href="instructions/css/theme/white.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="instructions/lib/css/zenburn.css">
+
+    <link rel="stylesheet" type="text/css" href="instructions/custom/custom.css">
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        window.location.search.match(/print-pdf/gi) ? console.log('Loading print css') : console.log('Loading normal css');
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section data-markdown class="instruction-text">
+                ## Aufgabe
+
+                Es soll eine Ampelschaltung gebaut werden.
+                Die Ampel wird mit Hilfe einer Website geschaltet. Der Workshop besteht dabei aus drei Teilaufgaben und
+                dem
+                Aufbau der Schaltung.
+
+
+                ## Inventar
+
+                * Raspberry Pi
+                * Steckbrett
+                * 3x LED
+                * 3x Widerstand 320&#8486;
+                * Kabel
+            </section>
+            <section data-background-video="instructions/custom/20190214_led_schaltung.mp4" data-background-video-loop="loop">
+                <!-- Demo Video-->
+            </section>
+            <section>
+                <h3>Hintergrundinformationen</h3>
+
+                Steckbrett/ LED <br>
+                <img src="instructions/custom/breadboard.png" width="320" height="480" />
+
+                <img src="instructions/custom/led.png" width="320" height="480" />
+            </section>
+            <section>
+                <section>
+                    <h1>Aufbau</h1>
+                </section>
+                <section>
+                    <p class="instruction-text">
+                        LEDs auf den mittleren Teil des Steckbretts stecken (<b>merken wo das kurze Bein ist!</b>)<br>
+                        Welche Reihe auf dem Steckbrett gewählt wird ist egal. <br>Die Reihenfolge der LEDs entspricht
+                        den Farben der Ampel.
+                    </p>
+                    <img src="instructions/custom/aufbau_schritt1.jpg" height="60%" width="60%" style="transform: rotate(180deg)" />
+                </section>
+                <section>
+                    <p class="instruction-text">
+                        Reihen mit den <b>kurzen</b> Beinen mit Hilfe des Widerstands mit dem äußeren Rand verbinden.
+                        <br>
+                        Welche Reihe auf dem äußeren Rand genommen wird ist egal.
+                    </p>
+                    <img src="instructions/custom/aufbau_schritt2.jpg" height="60%" width="60%" />
+                </section>
+                <section>
+                    <p class="instruction-text">
+                        Äußere Reihe mit dem orangenen Kabel mit dem Raspberry Pi verbinden <br>
+                        (Am Raspberry Pi: äußere Reihe, 3. Pin von der Ecke aus gesehen)
+                    </p>
+                    <img src="instructions/custom/aufbau_schritt3.jpg" height="60%" width="60%" style="transform: rotate(180deg)" />
+                </section>
+                <section>
+                    <p class="instruction-text">
+                        LED mit dem jeweils gleichfarbigen Kabel mit dem Raspberry Pi verbinden. <br>
+                        Das Kabel muss in die Reihe mit dem <b>langen</b> Bein der LED gesteckt werden.
+                        <ul>
+                            <li class="instruction-text">rot: Pin 4</li>
+                            <li class="instruction-text">gelb: Pin 5</li>
+                            <li class="instruction-text">grün: Pin 6</li>
+                        </ul>
+                    </p>
+                    <img src="instructions/custom/aufbau_schritt4.jpg" height="60%" width="60%" style="transform: rotate(180deg)" />
+                </section>
+                <section>
+                    <p>Bescheid geben um den Raspberry Pi zu starten.</p>
+                    <p>Website: <a href="http://localhost:8080">http://localhost:8080</a></p>
+                </section>
+            </section>
+            <section style="font-size: 24px">
+                <section>
+                    <h4>Aufgabe 1</h4>
+                    <p style="text-align: left;">
+                        <b>Datei:&emsp;&emsp;&emsp;</b> <span class="instruction-text"><i>server/workshop.js</i></span><br>
+                        <b>Code Stelle:&nbsp;&nbsp;</b> <span class="instruction-text">Teil mit "<i>TODO: Aufgabe 1</i>"
+                            ergänzen.
+                        </span><br>
+                        <b>Aufgabe:</b> <br><span class="instruction-text">
+                            Es wird eine Funktion implementiert, die als Parameter den LED Namen ('rot', 'gelb'
+                            oder 'gruen') und einen Status ('on' oder 'off') als Eingabe bekommt. Die Parameter werden
+                            durch
+                            die Website erzeugt.
+                            In der Funktion wird geprüft welche LED gerade geschaltet werden muss und dann entweder
+                            'schalteRot(status)', 'schalteGelb(status)' oder 'schalteGruen(status)' aufgerufen.
+                        </span>
+                    </p>
+                    <div>
+                        <p style="text-align: left;">
+                            <b>Hinweise:&emsp;</b><span class="instruction-text">Benötigt wird eine <b>If-Bedingung</b>.
+                                Jede Programmanwendung endet mit Semikolon:</span>
+                        </p>
+                        Semantik if-Bedingung:
+                        <pre><code class="hljs" data-trim contenteditable>
+                            WENN bedingung DANN programmanweisung 
+                            ODER WENN andere bedingung DANN andere programmanweisung
+                            </code></pre>
+                        Syntax:
+                        <pre><code class="hljs" data-trim contenteditable>
+                          function schalteLED(ledName, status) //=> Die Funktion hat die Parameter ledName und status.
+                            if ('A' === ledName) {             //=> hier wird der Wert 'A' mit dem Inhalt der 
+                                                               //   Variable ledName verglichen
+                              Programmanweisung;
+                            } else if ('B' === ledName) {      //=> wenn die erste Bedingung nicht erfüllt war
+                                                               //   wird Wert 'B' mit Inhalt der Variable verglichen.
+                              andere Programmanweisung;
+                            }
+                          }  
+                        </code></pre>
+                        Hilfreiche Befehle:
+                        <pre><code class="hljs" data-trim contenteditable>
+                        schalteGelb(status);       => Schaltet die gelbe LED in den angebenen Status ('on' oder 'off')
+                        </code></pre>
+
+                    </div>
+                </section>
+                <section>
+                    <h3>Lösung</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+                        function schalteLED(ledName, status) {
+                          if ('rot' === ledName) {
+                            schalteRot(status);
+                          } else if ('gelb' === ledName) {
+                            schalteGelb(status);
+                          } else if ('gruen' === ledName) {
+                            schalteGruen(status);
+                          }
+                        }
+                    </code></pre>
+                    <br>
+                    <p>Die Lösung ist auch in der Datei <b>Aufgabe1.md</b></p>
+                </section>
+            </section>
+            <section style="font-size: 24px">
+                <section>
+                    <h3>Aufgabe 2</h3>
+                    <p style="text-align: left;">
+                        <b>Datei:&emsp;&emsp;&emsp;</b> <span class="instruction-text"><i>server/workshop.js</i></span><br>
+                        <b>Code Stelle:&nbsp;&nbsp;</b> <span class="instruction-text">Teil mit "<i>TODO: Aufgabe 2</i>"
+                            ergänzen.
+                        </span><br>
+                        <b>Aufgabe:</b> <br><span class="instruction-text">Wenn die Funktion 'blinkeLED' aufgerufen
+                            wird
+                            soll die
+                            gelbe LED so oft blinken, wie in dem Wert 'anzahl' auf der Webseite angegeben.</span>
+                    </p>
+                    <p>
+                        <p style="text-align: left;">
+                            <b>Hinweise:</b><br>
+                            <span class="instruction-text">Benötigt wird eine While-Schleife. Eine While-Schleife wird
+                                wiederholt ausgeführt so lange eine bestimmte Bedingung erfüllt ist.</span>
+                        </p>
+                        Syntax:
+                        <pre><code class="hljs" data-trim contenteditable>
+                            let zaehler = 0;            // Variable wird mit Wert 0 initialisiert
+                            while(zaehler < anzahl) {   // Prüfung ob die Bedingung noch erfüllt ist
+                                zaehler = zaehler + 1;  // Variable wird um den Wert 1 erhöht
+                                Programmanweisung
+                            }
+                        </code></pre>
+                        Hilfreiche Befehle:
+                        <pre><code class="hljs" data-trim contenteditable>
+                        await sleep(1);       => Wartet eine Sekunde bis die nächste Zeile ausgeführt wird.
+                        </code></pre>
+                    </p>
+                </section>
+                <section>
+                    <h3>Lösung</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+                        async function blinkeLED(anzahl) {
+                          let zaehler = 0;
+                          while(zaehler < anzahl) {
+                            schalteGelb('on');
+                            await sleep(1);
+                            schalteGelb('off');
+                            await sleep(1);
+                            zaehler = zaehler + 1;
+                          }
+                        }
+                    </code></pre>
+                    <br>
+                    <p>Die Lösung ist auch in der Datei <b>Aufgabe2.md</b></p>
+                </section>
+            </section>
+            <section style="font-size: 24px">
+                <section>
+                    <h3>Aufgabe 3</h3>
+                    <p style="text-align: left;">
+                        <b>Datei:&emsp;&emsp;&emsp;</b><span class="instruction-text"><i>server/workshop.js</i></span><br>
+                        <b>Code Stelle:&nbsp;&nbsp;</b> <span class="instruction-text">Teil mit "<i>TODO: Aufgabe 3</i>"
+                            ergänzen.</span><br>
+                        <b>Aufgabe:</b> <br><span class="instruction-text">Die Ampel soll in den Zustand 'rot' oder
+                            'gruen' geschaltet werden. Die Ampel kann mit einem Mausklick auf die grüne oder rote Lampe
+                            auf der Website geschaltet
+                            werden. <br>Beim Schaltvorgang soll die Ampel drei Sekunden auf gelb stehen.</span>
+                    </p>
+                    <p>
+                        <p style="text-align: left;">
+                            <b>Hinweise:</b><br>
+                            <span class="instruction-text">Prüfen ob gerade die rote oder grüne LED angeschaltet ist.
+                                Je nachdem welche an ist kann die Ampel dann geschaltet werden, wenn sie nicht ohnehin
+                                schon im Zielzustand ist. (Bspw. wenn man zweimal auf grün drückt)</span>
+                        </p>
+                        Hilfreiche Befehle:
+                        <pre><code class="hljs" data-trim contenteditable>
+                                - getState('rot')           => liefert 'on' oder 'off' für die jeweilige LED zurück
+                                - schalteRot('on')          => schaltet die angegebene LED in den Zustand
+                                - await sleep(3)            => Wartet für drei Sekunden
+                            </code></pre>
+                    </p>
+                </section>
+                <section>
+                    <h3>Lösung</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+                      async function schalteAmpelZu(ledName) {
+                        // Die LED soll zu dem Wert von 'ledName' geschaltet werden.
+                        // Der Wert ist entweder 'rot' oder 'gruen'.
+                        if ('rot' === ledName) {
+                          if (getState('rot') === 'off') {
+                            schalteLED('gelb', 'on');
+                            schalteLED('gruen', 'off');
+                            await sleep(3);
+                            schalteLED('rot', 'on');
+                            schalteLED('gelb', 'off');
+                          }
+                        } else if ('gruen' === ledName) {
+                          if (getState('gruen') === 'off') {
+                            schalteGelb('on');
+                            await sleep(3);
+                            schalteRot('off');
+                            schalteGelb('off')
+                            schalteGruen('on');
+                          }
+                        }
+                      }
+                        </code></pre>
+                    <br>
+                    <p>Die Lösung ist auch in der Datei <b>Aufgabe3.md</b></p>
+                </section>
+            </section>
+            <section>
+                <h3>Weiterbilungsmöglichkeiten</h3>
+                <p>
+                    Grasshopper Coding App for beginners: <a href="https://grasshopper.codes/demo/">https://grasshopper.codes/demo/</a>
+                </p>
+                <p>
+                    Java programmieren lernen für Dummies (ISBN: 978-3527709953, <a href="https://www.amazon.de/dp/3527709959/ref=cm_sw_em_r_mt_dp_U_Du8ACb5N7WT8M">Amazon</a>)
+                </p>
+                <p>
+                    GPIO PINs am RaspberryPi schalten, <a href="https://tutorials-raspberrypi.de/raspberry-pi-gpio-erklaerung-beginner-programmierung-lernen/">Tutorial</a>
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <script src="instructions/lib/js/head.min.js"></script>
+    <script src="instructions/js/reveal.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            maxScale: 1.0,
+            minScale: 1.0,
+            width: 800,
+            height: 800,
+            margin: 0,
+            dependencies: [
+                { src: 'instructions/plugin/markdown/marked.js' },
+                { src: 'instructions/plugin/markdown/markdown.js' },
+                { src: 'instructions/plugin/notes/notes.js', async: true },
+                { src: 'instructions/plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } }
+            ],
+            history: true
+        });
+    </script>
+</body>
+
+</html>

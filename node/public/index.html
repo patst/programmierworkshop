@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        .container {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 5px;
+            width: 220px;
+            border-color: black;
+            border-width: 3px;
+            border-style: solid;
+            box-shadow: 15px 5px 20px rgba(233, 216, 216, 0.3);
+            margin-bottom: 20px;
+        }
+
+        .aufgabe {
+            width: 440px;
+        }
+
+        .ampel {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 5px;
+            padding-right: 5px;
+            border-radius: 5px;
+            width: 30px;
+            border-color: black;
+            border-width: 3px;
+            border-style: solid;
+            margin-top: 50px;
+        }
+
+        .button {
+            border-radius: 4px;
+            background-color: green;
+            color: black;
+            min-width: 80px;
+            padding: 10px 10px;
+            text-align: center;
+            font-size: 24px;
+            border-radius: 20px;
+            border-color: black;
+            border-width: 3px;
+            border-style: solid;
+        }
+
+        .led-gruen {
+            margin: 0 auto;
+            width: 24px;
+            height: 24px;
+            background-color: rgb(0, 245, 86);
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+            -webkit-animation: blinkGreen 1s 1;
+            -moz-animation: blinkGreen 1s 1;
+            -ms-animation: blinkGreen 1s 1;
+            -o-animation: blinkGreen 1s 1;
+            animation: blinkGreen 1s 1;
+        }
+
+        @keyframes blinkGreen {
+            from {
+                background-color: white;
+            }
+
+            50% {
+                background-color: #ABFF00;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0;
+            }
+
+            to {
+                background-color: rgb(0, 245, 86);
+            }
+        }
+
+        .led-off {
+            margin: 0 auto;
+            width: 24px;
+            height: 24px;
+            background-color: attr(data-light);
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, grey 0 2px 12px;
+            -webkit-animation: blinkOff 1s 1;
+            -moz-animation: blinkOff 1s 1;
+            -ms-animation: blinkOff 1s 1;
+            -o-animation: blinkOff 1s 1;
+            animation: blinkOff 1s 1;
+        }
+
+        @keyframes blinkOff {
+            from {
+                background-color: white;
+            }
+
+            50% {
+                background-color: white;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, grey 0 2px 0;
+            }
+
+            to {
+                background-color: white;
+            }
+        }
+
+        .led-gelb {
+            margin: 0 auto;
+            width: 24px;
+            height: 24px;
+            background-color: #FF0;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
+            -webkit-animation: blinkYellow 1s 1;
+            -moz-animation: blinkYellow 1s 1;
+            -ms-animation: blinkYellow 1s 1;
+            -o-animation: blinkYellow 1s 1;
+            animation: blinkYellow 1s 1;
+        }
+
+        @keyframes blinkYellow {
+            from {
+                background-color: white;
+            }
+
+            50% {
+                background-color: white;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #f8f8de 0 -1px 9px, #FF0 0 2px 0;
+            }
+
+            to {
+                background-color: #FF0;
+            }
+        }
+
+        .led-rot {
+            margin: 0 auto;
+            width: 24px;
+            height: 24px;
+            background-color: #F00;
+            border-radius: 50%;
+            box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+            -webkit-animation: blinkRed 0.5s 1;
+            -moz-animation: blinkRed 0.5s 1;
+            -ms-animation: blinkRed 0.5s 1;
+            -o-animation: blinkRed 0.5s 1;
+            animation: blinkRed 0.5s 1;
+        }
+
+        @keyframes blinkRed {
+            from {
+                background-color: #F00;
+            }
+
+            50% {
+                background-color: #A00;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+            }
+
+            to {
+                background-color: #F00;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="aufgabe">
+        <details open>
+            <summary>Aufgabe 1</summary>
+            <h3>Schaltet die Leuchte mit der jeweiligen Farbe an und aus.</h3>
+
+            <div class="container">
+                <input type="submit" class="button" style="background-color: red;" value="An" onclick="onRed()">
+                <input type="submit" class="button" style="background-color: red;" value="Aus" onclick="offRed()">
+            </div>
+            <div class="container">
+                <input type="submit" class="button" style="background-color: yellow;" value="An" onclick="onYellow()">
+                <input type="submit" class="button" style="background-color: yellow;" value="Aus" onclick="offYellow()">
+            </div>
+            <div class="container">
+                <input type="submit" class="button" value="An" onclick="onGreen()">
+                <input type="submit" class="button" value="Aus" onclick="offGreen()">
+            </div>
+        </details>
+    </div>
+    <div class="aufgabe">
+        <details>
+            <summary>Aufgabe 2</summary>
+            <h3>Lasse die gelbe Leuchte so oft blinken, wie im Kasten daneben eingetragen.</h3>
+
+            <div class="container">
+                <input type="number" class="button" id="blinkAmount" min="1" style="background-color: grey; width: 40px">
+                <input type="submit" class="button" style="background-color: yellow;" value="Blinken" onclick="blink()">
+            </div>
+
+        </details>
+    </div>
+    <div id="output" style="display: none;">
+        Output:
+    </div>
+
+
+    <div class="aufgabe">
+        <details>
+            <summary>Aufgabe 3</summary>
+            <h3>Mit einem Klick auf eine der Leuchten soll die Ampel dorthin geschaltet werden.</h3>
+            Hinweis: Ist die Ampel rot und soll die Ampel auf 'grün' geschaltet werden, bleibt sie natürlich vorher
+            drei
+            Sekunden gelb.
+
+            <div class="ampel">
+                <div id="ledRed" class="led-rot" data-light="rot" onclick="schalteAmpel(this)"></div>
+                <div id="ledYellow" class="led-gelb" data-light="gelb"></div>
+                <div id="ledGreen" class="led-gruen" data-light="gruen" onclick="schalteAmpel(this)"></div>
+            </div>
+        </details>
+    </div>
+
+
+
+    <script type="text/javascript">
+        let ws = null;
+        this.init();
+
+        function onGreen() {
+            ws.send(JSON.stringify({ "light": "gruen", "operation": "on" }));
+        }
+        function offGreen() {
+            ws.send(JSON.stringify({ "light": "gruen", "operation": "off" }));
+        }
+        function onYellow() {
+            ws.send(JSON.stringify({ "light": "gelb", "operation": "on" }));
+        }
+        function offYellow() {
+            ws.send(JSON.stringify({ "light": "gelb", "operation": "off" }));
+        }
+        function onRed() {
+            ws.send(JSON.stringify({ "light": "rot", "operation": "on" }));
+        }
+        function offRed() {
+            ws.send(JSON.stringify({ "light": "rot", "operation": "off" }));
+        }
+        function schalteAmpel(light) {
+            ws.send(JSON.stringify({ "light": light.dataset.light, "operation": "switchTrafficLight" }));
+        }
+        function blink() {
+            let amount = document.getElementById('blinkAmount').value;
+            let message = JSON.stringify({ "light": "gelb", "operation": "blink", "amount": amount });
+            console.log('blink value:', message);
+            ws.send(message);
+        }
+        function init() {
+            if ("WebSocket" in window) {
+                console.log("WebSocket is supported by your Browser!");
+
+                // Let us open a web socket
+                ws = new WebSocket("ws://localhost:8081", "echo-protocol");
+
+                ws.onopen = function () {
+                    // Web Socket is connected, send data using send()
+                    console.log("Websocket connection open...");
+                };
+
+                ws.onmessage = function (evt) {
+                    console.log("Message is received...", evt.data);
+                    let outputDiv = document.getElementById("output");
+                    let paragraph = document.createElement("p");
+                    paragraph.appendChild(document.createTextNode(evt.data));
+                    outputDiv.appendChild(paragraph);
+
+                    let response = JSON.parse(evt.data);
+                    let ledDiv = document.querySelector("[data-light=" + response.light + "]");
+
+                    if (response.state === 'on') {
+                        ledDiv.classList.remove("led-off");
+                        ledDiv.classList.add('led-' + response.light);
+                    } else if (response.state === 'off') {
+                        ledDiv.classList.remove('led-' + response.light);
+                        ledDiv.classList.add('led-off');
+                    }
+                };
+
+                ws.onclose = function () {
+                    // websocket is closed.
+                    console.log("Connection is closed. Trying to reconnect in 2 seconds");
+                    setTimeout(() => { init() }, 2000);
+                };
+
+                ws.onerror = function (e) {
+                    // websocket is closed.
+                    console.log("Error :...", e);
+                };
+            } else {
+                // The browser doesn't support WebSocket
+                alert("WebSocket NOT supported by your Browser!");
+            }
+        }
+    </script>
+</body>
+
+</html>

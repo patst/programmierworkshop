@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: programmierworkshop
+  namespace: default
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: programmierworkshop
+    spec:
+      containers:
+        - name: programmierworkshop
+          image: testilabcontainerregistry.azurecr.io/programmierworkshop-instructions
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+#      imagePullSecrets:
+#        - name: registry.gitlab.com
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: programmierworkshop-service
+  namespace: default
+spec:
+  selector:
+    app: programmierworkshop
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: programmierworkshop
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    certmanager.k8s.io/cluster-issuer: ca-issuer
+spec:
+  tls:
+    - hosts:
+        - programmierworkshop.k8s.i-lab.local
+      secretName: programmierworkshop-ingress-cert
+  rules:
+    - http:
+        paths:
+          - path: /
+            backend:
+              serviceName: programmierworkshop-service
+              servicePort: 80
+      host: programmierworkshop.k8s.i-lab.local

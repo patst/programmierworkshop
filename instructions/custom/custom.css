@@ -1,0 +1,49 @@
+div div.text-block {
+    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: grey;
+    font-size: 50%;
+    border-radius: 20px;
+    border-color: black;
+    border-width: 3px;
+    border-style: solid;
+    box-shadow: 15px 5px 20px rgba(233, 216, 216, 0.3);
+}
+
+.grid-2-container {
+    display: grid;
+    grid-template-columns: 220px auto;
+    column-gap: 30px;
+    row-gap: 80px;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+}
+
+.shadowed {
+    color: green;
+    text-shadow:  7px 5px 5px rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+#styled-image {
+    box-shadow: 30px 45px 40px rgba(233, 216, 216, 0.3) ;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: lightgrey;
+    border-radius: 25px;
+}
+
+.instruction-text {
+    padding-left: 50px;
+    font-size: 16px !important;
+}
